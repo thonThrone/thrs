@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Packages;
 
 use App\Http\Controllers\Controller;
+use App\Models\Package;
 use Illuminate\Http\Request;
 
 class PackagesController extends Controller
@@ -13,7 +14,8 @@ class PackagesController extends Controller
     public function index()
     {
         //
-        return view('admin.packages.index');
+        $data=Package::get();
+        return view('admin.packages.index', compact('data'));
     }
 
     /**
@@ -22,6 +24,7 @@ class PackagesController extends Controller
     public function create()
     {
         //
+        return view('admin.packages.create');
     }
 
     /**
@@ -30,6 +33,10 @@ class PackagesController extends Controller
     public function store(Request $request)
     {
         //
+        Package::create(
+            ['name'=>$request->name]
+        );
+        return redirect()->back();
     }
 
     /**
@@ -46,6 +53,8 @@ class PackagesController extends Controller
     public function edit(string $id)
     {
         //
+        $package=Package::find($id);
+        return view('admin.packages.edit', compact('package'));
     }
 
     /**
@@ -54,6 +63,10 @@ class PackagesController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $package=Package::find($id);
+        $package->name=$request->name;
+        $package->save();
+        return redirect()->back();
     }
 
     /**

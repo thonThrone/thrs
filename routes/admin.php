@@ -42,6 +42,11 @@ Route::group([
        Route::group(['prefix' => '/packages',
        'as' => 'packages.',],function ()  {
          Route::get('/',[PackagesController::class, 'index'])->name('packages_index');
+         Route::get('/create',[PackagesController::class, 'create'])->name('packages_create');
+         Route::post('/store',[PackagesController::class, 'store'])->name('packages_store');
+         Route::get('/edit/{id}',[PackagesController::class, 'edit'])->name('packages_edit');
+         Route::put('/update/{id}',[PackagesController::class, 'update'])->name('packages_update');
+         Route::delete('/delete/{id}',[PackagesController::class, 'destroy'])->name('packages_destroy');
        });
 
        //requests
