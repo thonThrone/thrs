@@ -53,6 +53,7 @@ Route::group([
        Route::group(['prefix' => '/requests',
        'as' => 'requests.',],function ()  {
          Route::get('/',[RequestsController::class, 'index'])->name('requests_index');
+         Route::put('/update/{id}',[RequestsController::class, 'update'])->name('requests_update');
        });
 
        //roles

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin\Requests;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Package;
+use App\Models\Request ;
 
 class RequestsController extends Controller
 {
@@ -13,6 +14,8 @@ class RequestsController extends Controller
     public function index()
     {
         //
+        $data=Request::get();
+        return view('admin.requests.index', compact('data'));
     }
 
     /**
@@ -53,6 +56,7 @@ class RequestsController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        return [$request->all(), $id];
     }
 
     /**

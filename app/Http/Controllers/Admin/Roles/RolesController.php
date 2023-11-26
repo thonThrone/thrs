@@ -13,6 +13,7 @@ class RolesController extends Controller
     public function index()
     {
         //
+        return view('admin.roles.index');
     }
 
     /**
