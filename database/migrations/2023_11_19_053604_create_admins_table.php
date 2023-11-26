@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('added_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->string('password');
-            $table->tinyInteger('status');
-            $table->tinyInteger('is_super'); //0 not super 1 super
+            $table->tinyInteger('status')->default(1);
+            $table->tinyInteger('is_super')->default(0); //0 not super 1 super
             $table->rememberToken();
             $table->timestamps();
         });

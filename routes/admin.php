@@ -31,6 +31,11 @@ Route::group([
        Route::group(['prefix' => '/admins',
        'as' => 'admins.',],function ()  {
          Route::get('/',[AdminsController::class, 'index'])->name('admins_index');
+         Route::get('/create',[AdminsController::class, 'create'])->name('admins_create');
+         Route::post('/store',[AdminsController::class, 'store'])->name('admins_store');
+         Route::get('/edit/{id}',[AdminsController::class, 'edit'])->name('admins_edit');
+         Route::put('/update/{id}',[AdminsController::class, 'update'])->name('admins_update');
+         Route::delete('/delete/{id}',[AdminsController::class, 'destroy'])->name('admins_destroy');
        });
 
        //packages

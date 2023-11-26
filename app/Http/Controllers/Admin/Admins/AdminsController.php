@@ -25,6 +25,7 @@ class AdminsController extends Controller
     public function create()
     {
         //
+        return view('admin.admins.create');
     }
 
     /**
@@ -33,6 +34,22 @@ class AdminsController extends Controller
     public function store(Request $request)
     {
         //
+        try {
+            //code...
+            Admin::create([
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'mobile_no'=>$request->mobile_no,
+                'password'=>$request->password
+            ]);
+            
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $th;
+        }
+        
+       
     }
 
     /**
@@ -41,6 +58,7 @@ class AdminsController extends Controller
     public function show(string $id)
     {
         //
+        
     }
 
     /**
@@ -49,6 +67,8 @@ class AdminsController extends Controller
     public function edit(string $id)
     {
         //
+        $admin=Admin::find($id);
+        return view('admin.admins.edit', compact('admin'));
     }
 
     /**
@@ -57,6 +77,20 @@ class AdminsController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        try {
+            //code...
+            $admin=Admin::find($id);
+            $admin->name=$request->name;
+            $admin->email=$request->email;
+            $admin->mobile_no=$request->mobile_no;
+            $admin->save();
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            return $th;
+        }
+       
+
+       
     }
 
     /**
